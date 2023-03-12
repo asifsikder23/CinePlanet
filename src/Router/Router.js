@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Watch from "../Component/Home/Hero/Watch";
 import Home from "../Component/Home/Home";
 import Main from "../Layout/Main";
 import SignIn from "../Shared/SignIn/SignIn";
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
+      },
+      {
+        path: "/watch/:id",
+        element: <Watch/>,
       },
       {
         path: "/signUp",
