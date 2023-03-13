@@ -2,14 +2,14 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Autoplay, Pagination } from "swiper";
+import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import FlexMovieItems from "./FlexMovieItems";
 
 const Hero = () => {
-  const { data: movies, refetch } = useQuery({
+  const { data: movies } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
       const res = await fetch(`https://cineplanet-server.vercel.app/movies`);
@@ -18,7 +18,6 @@ const Hero = () => {
       return data;
     },
   });
-  console.log(movies);
 
   return (
     <div className="relative w-full">
@@ -56,14 +55,14 @@ const Hero = () => {
               <div className="flex gap-5 items-center">
                 <Link
                 to={`/watch/${movie._id}`}
-                  class="relative px-5 py-2 font-medium text-white group"
+                  className="relative px-5 py-2 font-medium text-white group"
                 >
-                  <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-red-500 group-hover:bg-red-700 group-hover:skew-x-12"></span>
-                  <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-red-700 group-hover:bg-red-500 group-hover:-skew-x-12"></span>
+                  <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-red-500 group-hover:bg-red-700 group-hover:skew-x-12"></span>
+                  <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-red-700 group-hover:bg-red-500 group-hover:-skew-x-12"></span>
 
-                  <span class="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-red-600 -rotate-12"></span>
-                  <span class="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-red-400 -rotate-12"></span>
-                  <span class="relative">Watch</span>
+                  <span className="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-red-600 -rotate-12"></span>
+                  <span className="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-red-400 -rotate-12"></span>
+                  <span className="relative">Watch</span>
                 </Link>
                 <button className="bg-white hover:text-red-600 text-white px-4 py-3 rounded text-sm bg-opacity-30">
                   <FaHeart/>

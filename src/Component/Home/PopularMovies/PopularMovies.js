@@ -14,7 +14,6 @@ const PopularMovies = () => {
       return data;
     },
   });
-  console.log(movies);
   return (
     <div className="my-16">
       <Title title="Popular Movies" Icon={BsCollectionFill} />

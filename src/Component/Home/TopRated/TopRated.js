@@ -18,13 +18,11 @@ const TopRated = () => {
       return data;
     },
   });
-  console.log(movies);
   return (
     <div className="my-16">
       <Title title="Top Rated" Icon={BsBookmarkStarFill} />
       <div className="mt-10">
         <Swiper
-          slidesPerView={"auto"}
           spaceBetween={40}
           autoplay={{
             delay: 4000,

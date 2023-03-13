@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import MovieInfo from "../Component/Home/Hero/MovieInfo";
 import Watch from "../Component/Home/Hero/Watch";
 import Home from "../Component/Home/Home";
 import About from "../Component/Pages/About/About";
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/watch/:id",
         element: <Watch/>,
+      },
+      {
+        path: "/watchMovie/:id",
+        element: <MovieInfo/>,
       },
       {
         path: "/about",

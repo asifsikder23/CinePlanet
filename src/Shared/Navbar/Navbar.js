@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AiFillHeart } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/logo.png";
 import Search from "../../Component/Search";
-import { FaUser } from "react-icons/fa";
-import { AiFillHeart } from "react-icons/ai";
+import { AuthContext } from "../../Context/UserContext";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   return (
     <div className="mx-5 xl:mx-0 header">
       <nav>
@@ -133,7 +135,6 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      to="contact"
                       activeclassName="contact"
                       spy={true}
                       smooth={true}
@@ -141,40 +142,48 @@ const Navbar = () => {
                       duration={2000}
                       className="block md:px-3 group cursor-pointer visible lg:hidden"
                     >
-                      <div
-                        className="relative 
+                      {user ? (
+                        <div
+                          onClick={logOut}
+                          className="relative 
                                                     before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left before:bg-yellow-500 before:mx-auto before:mt-auto before:rounded-full  before:transition before:scale-x-0 group-hover:before:scale-x-100"
-                      >
-                        <span className="transition ">Profile</span>
-                      </div>
+                        >
+                          <span className="transition ">Profile</span>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
                     </Link>
                   </li>
-                  
                 </ul>
               </div>
 
               <div className="w-full gap-y-4 lg:w-max md:gap-y-0 lg:gap-x-3 flex items-center lg:flex-row flex-col">
                 <div className="hidden lg:flex items-center gap-5">
-                  <FaUser className="text-white w-20" />
-                </div>
-                <div className="hidden lg:flex items-center gap-5">
-                  <AiFillHeart className="text-white w-20"/>
+                  <AiFillHeart className="text-white w-20" />
                 </div>
                 <div>
-                  {/* {user && ( */}
-
-                  <button
-                    // onClick={logOut}
-                    type="button"
-                    title="Sign Out"
-                    class="relative inline-flex items-center justify-start px-10 py-3 w-full overflow-hidden font-medium transition-all bg-red-600 rounded-full hover:bg-white group"
-                  >
-                    <span class="absolute inset-0 border-0 group-hover:border-[25px] ease-linear duration-100 transition-all border-white rounded-full"></span>
-                    <span class="relative w-full text-center text-white transition-colors duration-200 ease-in-out group-hover:text-red-600">
-                      LogOut
-                    </span>
-                  </button>
-                  {/* )} */}
+                  {user ? (
+                    <div
+                      onClick={logOut}
+                      className="hidden lg:flex items-center gap-5 cursor-pointer"
+                    >
+                      <FaUser className="text-white w-20" />
+                    </div>
+                  ) : (
+                    <Link to={"/signIn"}>
+                      <button
+                        type="button"
+                        title="Sign Out"
+                        className="relative inline-flex items-center justify-start px-10 py-3 w-full overflow-hidden font-medium transition-all bg-red-600 rounded-full hover:bg-white group"
+                      >
+                        <span className="absolute inset-0 border-0 group-hover:border-[25px] ease-linear duration-100 transition-all border-white rounded-full"></span>
+                        <span className="relative w-full text-center text-white transition-colors duration-200 ease-in-out group-hover:text-red-600">
+                          SignIn
+                        </span>
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
