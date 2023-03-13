@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className="max-w-[1400px] mx-auto ">
+    <div className="max-w-[1400px] mx-auto bg-[#03020d] ">
       {loading ? (
         <div className="flex justify-center App bg-black">
           <HashLoader
