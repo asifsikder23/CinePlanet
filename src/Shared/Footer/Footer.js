@@ -18,17 +18,17 @@ const Footer = () => {
             transform="translate(1.743 66.155)"
           ></path>
         </svg>
-        <div className="bg-gradient-to-b from-gray-100 to-transparent dark:from-red-800 dark:to-transparent pt-1">
+        <div className="bg-gradient-to-b from-red-800 to-transparent pt-1">
           <div className="container m-auto space-y-8 px-6 text-white md:px-12 lg:px-20">
             <div className="grid grid-cols-8 gap-6 md:gap-0">
-              <div className="col-span-8 border-r border-gray-100 dark:border-red-800 md:col-span-2 lg:col-span-3">
-                <div className="flex items-center justify-between gap-6 border-b border-white dark:border-red-800 py-6 md:block md:space-y-6 md:border-none md:py-0">
+              <div className="col-span-8 border-r border-red-800 md:col-span-2 lg:col-span-3">
+                <div className="flex items-center justify-between gap-6 border-b border-red-800 py-6 md:block md:space-y-6 md:border-none md:py-0">
                   <img
                     src={logo}
                     alt="logo tailus"
                     width="100"
                     height="42"
-                    className="w-32 dark:brightness-200 dark:grayscale"
+                    className="w-32 brightness-200 grayscale"
                   />
                   <div className="flex gap-6">
                     <a
@@ -88,7 +88,7 @@ const Footer = () => {
               <div className="col-span-8 md:col-span-6 lg:col-span-5">
                 <div className="grid grid-cols-2 gap-6 pb-16 sm:grid-cols-3 md:pl-16">
                   <div>
-                    <h6 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    <h6 className="text-lg font-medium  text-gray-200">
                       Company
                     </h6>
                     <ul className="mt-4 list-inside space-y-4">
@@ -120,7 +120,7 @@ const Footer = () => {
                     </ul>
                   </div>
                   <div>
-                    <h6 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    <h6 className="text-lg font-medium  text-gray-200">
                       Products
                     </h6>
                     <ul className="mt-4 list-inside space-y-4">
@@ -152,7 +152,7 @@ const Footer = () => {
                     </ul>
                   </div>
                   <div>
-                    <h6 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    <h6 className="text-lg font-medium  text-gray-200">
                       Ressources
                     </h6>
                     <ul className="mt-4 list-inside space-y-4">
@@ -184,7 +184,7 @@ const Footer = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex justify-between border-t border-gray-100 dark:border-red-800 py-4 pb-8 md:pl-16">
+                <div className="flex justify-between border-t  border-red-800 py-4 pb-8 md:pl-16">
                   <span className="">
                     &copy; CinePlanet 2023 - <span id="year"></span>{" "}
                   </span>

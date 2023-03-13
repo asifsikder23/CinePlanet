@@ -1,18 +1,18 @@
 import React from "react";
+import { FaHeart } from "react-icons/fa";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { Autoplay, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 import FlexMovieItems from "./FlexMovieItems";
-import { Link } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 
 const Hero = () => {
   const { data: movies, refetch } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/movies`);
+      const res = await fetch(`https://cineplanet-server.vercel.app/movies`);
       const data = await res.json();
 
       return data;
@@ -36,10 +36,7 @@ const Hero = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination, Autoplay]}
+        modules={[Autoplay]}
         className="w-full h-48 lg:h-64 xl:h-96"
       >
         {movies?.map((movie, index) => (

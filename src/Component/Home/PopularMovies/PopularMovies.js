@@ -1,20 +1,19 @@
 import React from "react";
-import Title from "../../Title/Title";
 import { BsCollectionFill } from "react-icons/bs";
 import { useQuery } from "react-query";
+import Title from "../../Title/Title";
 import Popular from "./Popular";
 
 const PopularMovies = () => {
-  const { data: movies, refetch } = useQuery({
+  const { data: movies } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/movies`);
+      const res = await fetch(`https://cineplanet-server.vercel.app/movies`);
       const data = await res.json();
 
       return data;
     },
   });
-  refetch()
   console.log(movies);
   return (
     <div className="my-16">
