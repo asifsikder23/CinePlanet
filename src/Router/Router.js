@@ -2,6 +2,8 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Watch from "../Component/Home/Hero/Watch";
 import Home from "../Component/Home/Home";
+import About from "../Component/Pages/About/About";
+import Contact from "../Component/Pages/Contact/Contact";
 import Main from "../Layout/Main";
 import SignIn from "../Shared/SignIn/SignIn";
 import SignUp from "../Shared/SignUp/SignUp";
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/watch/:id",
         element: <Watch/>,
+      },
+      {
+        path: "/about",
+        element: <About/>,
+      },
+      {
+        path: "/contact",
+        element: <Contact/>,
       },
       {
         path: "/signUp",
