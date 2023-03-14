@@ -75,7 +75,7 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className="block w-full h-full lg:h-auto">
-                <ul className="space-y-8 tracking-wide font-medium lg:flex lg:items-center lg:space-y-0">
+                <ul className="space-y-8  font-medium lg:flex justify-between lg:items-center lg:space-y-0">
                   <li>
                     <Search />
                   </li>

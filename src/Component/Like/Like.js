@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/UserContext";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
 
 const Like = ({ info }) => {
-    const {like, _id} = info
+  const { like, _id } = info;
   const { user } = useContext(AuthContext);
   const [likeCount, setLikeCount] = useState(like);
   const [liked, setLiked] = useState(false);
@@ -40,18 +40,16 @@ const Like = ({ info }) => {
       });
     }
   };
-  return <>
-  <div className="flex gap-3 items-center justify-center">
-            <div
-              onClick={() => handleLike(liked._id)}
-              className="flex gap-2 items-center"
-            >
-              <AiOutlineLike /> {likeCount} Like
-            </div>
-            <div className="flex gap-2 items-center">
-              <AiOutlineComment /> Comment
-            </div>
-          </div></>;
+  return (
+    <>
+      <div
+        onClick={() => handleLike(liked._id)}
+        className="flex gap-2 items-center"
+      >
+        <AiOutlineLike /> {likeCount} Like
+      </div>
+    </>
+  );
 };
 
 export default Like;

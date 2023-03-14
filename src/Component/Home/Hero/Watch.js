@@ -19,6 +19,7 @@ import {
 } from "react-share";
 import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
 import Like from "../../Like/Like";
+import Comment from "../../Comment/Comment";
 
 const Watch = () => {
   const params = useParams();
@@ -156,12 +157,19 @@ const Watch = () => {
         </div>
       ))}
       <div className="p-10">
-        {details?.map((info) => (
-          <Like
-          key={info.id}
-          info={info}
-          ></Like>
-        ))}
+        <div className="flex gap-3 items-center justify-center">
+          {details?.map((info) => (
+            <Like key={info.id} info={info}></Like>
+          ))}
+          <div className="flex gap-2 items-center">
+            <AiOutlineComment /> Comment
+          </div>
+        </div>
+      </div>
+      <div>
+      {details?.map((info) => (
+            <Comment key={info.id} info={info}></Comment>
+          ))}
       </div>
     </div>
   );
