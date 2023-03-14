@@ -25,7 +25,7 @@ const FavoriteNotification = () => {
       });
       console.log(info);
   return (
-    <div className="mr-5">
+    <div className="">
       <span className="indicator-item text-lg font-bold">{info.length}</span>
     </div>
   );

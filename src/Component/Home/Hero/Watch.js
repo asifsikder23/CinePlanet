@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import FlexMovieItems from "./FlexMovieItems";
 import { FaPlay, FaShareAlt } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
+import img from "../../../Assets/Daco_6064967.png";
 
 import Star from "../TopRated/Star";
 import {
@@ -17,9 +18,8 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
-import Like from "../../Like/Like";
 import Comment from "../../Comment/Comment";
+import Like from "../../Like/Like";
 
 const Watch = () => {
   const params = useParams();
@@ -65,7 +65,13 @@ const Watch = () => {
                       HD 4K
                     </div>
                     <FlexMovieItems movie={movie && movie}></FlexMovieItems>
+                    <div className="flex gap-3 items-center justify-center">
+                      {details?.map((info) => (
+                        <Like key={info.id} info={info}></Like>
+                      ))}
+                    </div>
                   </div>
+
                   <div>
                     <p className="text-white text-sm leading-7 mb-5">
                       {movie?.desc}
@@ -156,20 +162,14 @@ const Watch = () => {
           </label>
         </div>
       ))}
-      <div className="p-10">
-        <div className="flex gap-3 items-center justify-center">
-          {details?.map((info) => (
-            <Like key={info.id} info={info}></Like>
-          ))}
-          <div className="flex gap-2 items-center">
-            <AiOutlineComment /> Comment
-          </div>
+      <div className="p-10"></div>
+      <div className="grid lg:grid-cols-2 container mx-auto">
+        <div>
+          <img src={img} alt=""/>
         </div>
-      </div>
-      <div>
-      {details?.map((info) => (
-            <Comment key={info.id} info={info}></Comment>
-          ))}
+        {details?.map((info) => (
+          <Comment key={info.id} info={info}></Comment>
+        ))}
       </div>
     </div>
   );

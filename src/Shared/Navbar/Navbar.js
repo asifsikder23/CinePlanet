@@ -163,7 +163,7 @@ const Navbar = () => {
                 to={'/favorite'}>
                   <div className="mr-5">
                   <p className="indicator tab tab-active">
-                    <AiFillHeart className="text-white w-10 h-10" />
+                    <AiFillHeart className="text-red-600 w-10 h-10" />
                     <FavoriteNotification/>
                   </p>
                 </div>

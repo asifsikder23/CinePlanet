@@ -44,9 +44,9 @@ const Like = ({ info }) => {
     <>
       <div
         onClick={() => handleLike(liked._id)}
-        className="flex gap-2 items-center"
+        className="flex gap-2 items-center cursor-pointer"
       >
-        <AiOutlineLike /> {likeCount} Like
+        <AiOutlineLike className="w-6 h-6 bg-red-600 p-1 rounded"/> {likeCount} Like
       </div>
     </>
   );

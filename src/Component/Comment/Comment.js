@@ -11,7 +11,9 @@ const Comment = ({ info }) => {
 
   const queryKey = ["moviesComment"];
   const queryFn = async () => {
-    const response = await fetch(`https://cineplanet-server.vercel.app/movieComment/${_id}`);
+    const response = await fetch(
+      `https://cineplanet-server.vercel.app/movieComment/${_id}`
+    );
     const jsonData = await response.json();
     return jsonData;
   };
@@ -54,7 +56,7 @@ const Comment = ({ info }) => {
     <div>
       <div className="col-span-4 pl-2">
         <div>
-          <div>
+          <div className="h-96">
             {moviesCommentData?.map((comment) => (
               <MovieComment
                 key={comment._id}
@@ -68,7 +70,7 @@ const Comment = ({ info }) => {
 
           <form
             onSubmit={handleSubmit}
-            className="bg-gradient-to-r from-[#006663] to-[#111111] rounded-lg p-4 hover:shadow-lg"
+            className="bg-[#660000] rounded-lg p-4 hover:shadow-lg"
           >
             <textarea
               value={comment}
