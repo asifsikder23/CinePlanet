@@ -6,6 +6,7 @@ import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Favorite from "../../../Shared/Favorite/Favorite";
 import FlexMovieItems from "./FlexMovieItems";
 
 const Hero = () => {
@@ -18,7 +19,6 @@ const Hero = () => {
       return data;
     },
   });
-
   return (
     <div className="relative w-full">
       <Swiper
@@ -64,10 +64,8 @@ const Hero = () => {
                   <span className="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-red-400 -rotate-12"></span>
                   <span className="relative">Watch</span>
                 </Link>
-                <button className="bg-white hover:text-red-600 text-white px-4 py-3 rounded text-sm bg-opacity-30">
-                  <FaHeart/>
 
-                </button>
+                <Favorite movie={movie}></Favorite>
               </div>
             </div>
           </SwiperSlide>

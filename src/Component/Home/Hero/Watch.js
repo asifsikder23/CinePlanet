@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import FlexMovieItems from "./FlexMovieItems";
 import { FaPlay, FaShareAlt } from "react-icons/fa";
@@ -17,27 +17,25 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
+import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
+import Like from "../../Like/Like";
 
 const Watch = () => {
   const params = useParams();
   const id = params.id;
   const [details, setDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   console.log(id);
 
   useEffect(() => {
-    setLoading(true);
     fetch(`https://cineplanet-server.vercel.app/movies/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setDetails(data);
-        setLoading(false);
       });
   }, [id]);
   console.log(details);
-  const shareUrl = "https://pakkamarwadi.tk/";
   return (
     <div>
       {details?.map((movie) => (
@@ -105,7 +103,10 @@ const Watch = () => {
                   </div>
                 </div>
                 <div className="col-span-2 md:mt-0 mt-2 flex justify-end">
-                  <a href={movie?.video} className=" w-full md:w-1/4  relative flex-colo bg-red-600 hover:bg-transparent border-2 border-red-600 transition md:h-64 h-20 rounded font-medium">
+                  <a
+                    href={movie?.video}
+                    className=" w-full md:w-1/4  relative flex-colo bg-red-600 hover:bg-transparent border-2 border-red-600 transition md:h-64 h-20 rounded font-medium"
+                  >
                     <div className="flex gap-6 text-md uppercase tracking-widest absolute md:rotate-90">
                       Download <FiLogIn className="w-6 h-6" />
                     </div>
@@ -114,31 +115,54 @@ const Watch = () => {
               </div>
             </div>
           </div>
+          <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+          <label htmlFor="my-modal-4" className="modal cursor-pointer">
+            <label className="modal-box relative" htmlFor="">
+              <p className="text-center text-xl pb-3 ">Share via</p>
+              <div className="flex justify-center gap-5">
+                <FacebookShareButton
+                  url={`https://cineplanet-theater.web.app/watch/${movie?._id}`}
+                  className=""
+                >
+                  <FacebookIcon size={40} />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={`https://cineplanet-theater.web.app/watch/${movie?._id}`}
+                  className=""
+                >
+                  <TwitterIcon size={40} />
+                </TwitterShareButton>
+                <WhatsappShareButton
+                  url={`https://cineplanet-theater.web.app/watch/${movie?._id}`}
+                  className=""
+                >
+                  <WhatsappIcon size={40} />
+                </WhatsappShareButton>
+                <EmailShareButton
+                  url={`https://cineplanet-theater.web.app/watch/${movie?._id}`}
+                  className=""
+                >
+                  <EmailIcon size={40} />
+                </EmailShareButton>
+                <TelegramShareButton
+                  url={`https://cineplanet-theater.web.app/watch/${movie?._id}`}
+                  className=""
+                >
+                  <TelegramIcon size={40} />
+                </TelegramShareButton>
+              </div>
+            </label>
+          </label>
         </div>
       ))}
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
-          <p className="text-center text-xl pb-3 ">Share via</p>
-          <div className="flex justify-center gap-5">
-            <FacebookShareButton url={shareUrl} className="">
-              <FacebookIcon size={40} />
-            </FacebookShareButton>
-            <TwitterShareButton url={shareUrl} className="">
-              <TwitterIcon size={40} />
-            </TwitterShareButton>
-            <WhatsappShareButton url={shareUrl} className="">
-              <WhatsappIcon size={40} />
-            </WhatsappShareButton>
-            <EmailShareButton url={shareUrl} className="">
-              <EmailIcon size={40} />
-            </EmailShareButton>
-            <TelegramShareButton url={shareUrl} className="">
-              <TelegramIcon size={40} />
-            </TelegramShareButton>
-          </div>
-        </label>
-      </label>
+      <div className="p-10">
+        {details?.map((info) => (
+          <Like
+          key={info.id}
+          info={info}
+          ></Like>
+        ))}
+      </div>
     </div>
   );
 };

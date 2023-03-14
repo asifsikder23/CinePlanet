@@ -1,8 +1,9 @@
 import React from "react";
 import { BsCollectionFill } from "react-icons/bs";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import Favorite from "../../../Shared/Favorite/Favorite";
 import Title from "../../Title/Title";
-import Popular from "./Popular";
 
 const PopularMovies = () => {
   const { data: movies } = useQuery({
@@ -18,8 +19,18 @@ const PopularMovies = () => {
     <div className="my-16">
       <Title title="Popular Movies" Icon={BsCollectionFill} />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 md:mt-12 gap-10">
-        {movies?.map((popular) => (
-          <Popular key={popular._id} popular={popular}></Popular>
+        {movies?.map((movie) => (
+         <div className='border border-border p-1 hover:scale-95 transition relative rounded overflow-hidden'>
+         <Link
+         to={`/watch/${movie._id}`}
+         className='w-full'>
+             <img src={movie.titleImg} alt="" className=''/>
+         </Link>
+         <div className='absolute flex justify-between gap-2 bottom-0 right-0 left-0 bg-slate-900 bg-opacity-60 text-white px-4 py-3'>
+             <h3 className='font-semibold truncate'>{movie.name}</h3>
+             <Favorite movie={movie}></Favorite>
+         </div>
+     </div>
         ))}
       </div>
     </div>

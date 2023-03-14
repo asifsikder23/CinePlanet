@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "../../Assets/logo.png";
 import Search from "../../Component/Search";
 import { AuthContext } from "../../Context/UserContext";
+import FavoriteNotification from "../Favorite/FavoriteNotification";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -158,12 +159,15 @@ const Navbar = () => {
               </div>
 
               <div className="w-full gap-y-4 lg:w-max md:gap-y-0 lg:gap-x-3 flex items-center lg:flex-row flex-col">
-                <div className="mr-5">
+                <Link
+                to={'/favorite'}>
+                  <div className="mr-5">
                   <p className="indicator tab tab-active">
                     <AiFillHeart className="text-white w-10 h-10" />
-                    <span className="indicator-item text-lg font-bold">8</span>
+                    <FavoriteNotification/>
                   </p>
                 </div>
+                </Link>
                 <div>
                   {user ? (
                     <div className="dropdown dropdown-end hidden lg:flex">

@@ -6,6 +6,7 @@ import Home from "../Component/Home/Home";
 import About from "../Component/Pages/About/About";
 import Contact from "../Component/Pages/Contact/Contact";
 import Main from "../Layout/Main";
+import FavoriteList from "../Shared/Favorite/FavoriteList";
 import SignIn from "../Shared/SignIn/SignIn";
 import SignUp from "../Shared/SignUp/SignUp";
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/watchMovie/:id",
         element: <MovieInfo/>,
+      },
+      {
+        path: "/favorite",
+        element: <FavoriteList/>,
       },
       {
         path: "/about",

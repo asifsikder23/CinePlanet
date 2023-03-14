@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Star from "./Star";
 import { Autoplay, FreeMode, Pagination } from "swiper";
+import Favorite from "../../../Shared/Favorite/Favorite";
 
 const TopRated = () => {
   const { data: movies } = useQuery({
@@ -58,9 +59,7 @@ const TopRated = () => {
                 />
                 <div className="px-4 hoveres gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0 py-48">
                   <div className="flex justify-center items-center pb-2">
-                    <button className="w-12 h-12 flex flex-col justify-center items-center transition hover:bg-red-600 rounded-full bg-white bg-opacity-30 text-white">
-                      <FaHeart />
-                    </button>
+                  <Favorite movie={movie}></Favorite>
                   </div>
                   <Link
                     to={`/watch/${movie._id}`}
