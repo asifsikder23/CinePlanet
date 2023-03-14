@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
-import { AiFillHeart } from "react-icons/ai";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../Context/UserContext";
-import FavoriteList from "./FavoriteList";
 
 const FavoriteNotification = () => {
     const { user } = useContext(AuthContext);
@@ -14,7 +12,7 @@ const FavoriteNotification = () => {
         queryKey: ["info", user?.email],
         queryFn: async () => {
           const res = await fetch(
-            `http://localhost:5000/favorite?email=${user?.email}`,
+            `https://cineplanet-server.vercel.app/favorite?email=${user?.email}`,
             {
               headers: {},
             }

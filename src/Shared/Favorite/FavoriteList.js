@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../Context/UserContext";
-import DataTable from "react-data-table-component";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import FavouriteListInfo from "./FavouriteListInfo";
 
 const FavoriteList = () => {
@@ -13,7 +10,7 @@ const FavoriteList = () => {
     queryKey: ["info"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/favorite?email=${user?.email}`
+        `https://cineplanet-server.vercel.app/favorite?email=${user?.email}`
       );
       const data = await res.json();
       return data;

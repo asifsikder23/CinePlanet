@@ -6,7 +6,7 @@ const FavouriteListInfo = ({list, refetch}) => {
 
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/favorite/${list._id}`, {
+    fetch(`https://cineplanet-server.vercel.app/favorite/${list._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

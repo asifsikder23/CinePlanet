@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../Context/UserContext";
+import { AiOutlineLike } from "react-icons/ai";
 import Swal from "sweetalert2";
-import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
+import { AuthContext } from "../../Context/UserContext";
 
 const Like = ({ info }) => {
   const { like, _id } = info;
@@ -11,7 +11,7 @@ const Like = ({ info }) => {
 
   const handleLike = () => {
     if (user?.email) {
-      fetch(`http://localhost:5000/movieLike/${_id}`, {
+      fetch(`https://cineplanet-server.vercel.app/movieLike/${_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -11,7 +11,7 @@ const Comment = ({ info }) => {
 
   const queryKey = ["moviesComment"];
   const queryFn = async () => {
-    const response = await fetch(`http://localhost:5000/movieComment/${_id}`);
+    const response = await fetch(`https://cineplanet-server.vercel.app/movieComment/${_id}`);
     const jsonData = await response.json();
     return jsonData;
   };
@@ -29,7 +29,7 @@ const Comment = ({ info }) => {
       email: user?.email,
     };
 
-    fetch(`http://localhost:5000/moviesComment`, {
+    fetch(`https://cineplanet-server.vercel.app/moviesComment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

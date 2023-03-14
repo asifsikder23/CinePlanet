@@ -25,7 +25,7 @@ const Favorite = ({ movie }) => {
       duration,
     };
 
-    fetch("http://localhost:5000/favorite", {
+    fetch("https://cineplanet-server.vercel.app/favorite", {
       method: "POST",
       headers: {
         "content-type": "application/json",
