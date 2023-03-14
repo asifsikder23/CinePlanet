@@ -110,7 +110,7 @@ const Navbar = () => {
                         className="relative
                                                     before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left before:bg-yellow-500 before:mx-auto before:mt-auto before:rounded-full  before:transition before:scale-x-0 group-hover:before:scale-x-100"
                       >
-                        <span className="transition">Service</span>
+                        <span className="transition">Movies</span>
                       </div>
                     </Link>
                   </li>
@@ -142,16 +142,15 @@ const Navbar = () => {
                       duration={2000}
                       className="block md:px-3 group cursor-pointer visible lg:hidden"
                     >
-                      {user ? (
-                        <div
-                          onClick={logOut}
-                          className="relative 
+                      {user && (
+                        <div className="dropdown dropdown-end">
+                          <div
+                            className="relative 
                                                     before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left before:bg-yellow-500 before:mx-auto before:mt-auto before:rounded-full  before:transition before:scale-x-0 group-hover:before:scale-x-100"
-                        >
-                          <span className="transition ">Profile</span>
+                          >
+                            <span className="transition ">Profile</span>
+                          </div>
                         </div>
-                      ) : (
-                        <div></div>
                       )}
                     </Link>
                   </li>
@@ -159,22 +158,45 @@ const Navbar = () => {
               </div>
 
               <div className="w-full gap-y-4 lg:w-max md:gap-y-0 lg:gap-x-3 flex items-center lg:flex-row flex-col">
-                <div className="hidden lg:flex items-center gap-5">
-                  <AiFillHeart className="text-white w-20" />
+                <div className="mr-5">
+                  <p className="indicator tab tab-active">
+                    <AiFillHeart className="text-white w-10 h-10" />
+                    <span className="indicator-item text-lg font-bold">8</span>
+                  </p>
                 </div>
                 <div>
                   {user ? (
-                    <div
-                      onClick={logOut}
-                      className="hidden lg:flex items-center gap-5 cursor-pointer"
-                    >
-                      <FaUser className="text-white w-20" />
+                    <div className="dropdown dropdown-end hidden lg:flex">
+                      <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle avatar"
+                      >
+                        <div className="w-10 rounded-full">
+                          <img src={user.photoURL} alt="" />
+                        </div>
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                      >
+                        <li>
+                          <p className="justify-between">Profile</p>
+                        </li>
+                        <li>
+                          <a>Settings</a>
+                        </li>
+                        <li>
+                          <p onClick={logOut} className="cursor-pointer">
+                            Logout
+                          </p>
+                        </li>
+                      </ul>
                     </div>
                   ) : (
                     <Link to={"/signIn"}>
                       <button
                         type="button"
-                        title="Sign Out"
+                        title="Sign In"
                         className="relative inline-flex items-center justify-start px-10 py-3 w-full overflow-hidden font-medium transition-all bg-red-600 rounded-full hover:bg-white group"
                       >
                         <span className="absolute inset-0 border-0 group-hover:border-[25px] ease-linear duration-100 transition-all border-white rounded-full"></span>
@@ -183,6 +205,21 @@ const Navbar = () => {
                         </span>
                       </button>
                     </Link>
+                  )}
+                </div>
+                <div className="flex lg:hidden">
+                  {user && (
+                    <button
+                      onClick={logOut}
+                      type="button"
+                      title="Log Out"
+                      className="relative inline-flex items-center justify-start px-10 py-3 w-full overflow-hidden font-medium transition-all bg-red-600 rounded-full hover:bg-white group"
+                    >
+                      <span className="absolute inset-0 border-0 group-hover:border-[25px] ease-linear duration-100 transition-all border-white rounded-full"></span>
+                      <span className="relative w-full text-center text-white transition-colors duration-200 ease-in-out group-hover:text-red-600">
+                        Log Out
+                      </span>
+                    </button>
                   )}
                 </div>
               </div>
