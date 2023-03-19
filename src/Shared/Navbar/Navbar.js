@@ -99,8 +99,8 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      to="service"
-                      activeclassName="service"
+                      to={'/movies/allMovie'}
+                      activeclassName="movies"
                       spy={true}
                       smooth={true}
                       offset={50}

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { BsBookmarkStarFill } from "react-icons/bs";
+import React from "react";
+import { TbMovie } from "react-icons/tb";
 import { useQuery } from "react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Title from "../../Title/Title";
-import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Star from "./Star";
-import { Autoplay, FreeMode, Pagination } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import Favorite from "../../../Shared/Favorite/Favorite";
+import ViewAllBtn from "../../button/ViewAllBtn";
 
 const TopRated = () => {
   const { data: movies } = useQuery({
@@ -21,7 +21,7 @@ const TopRated = () => {
   });
   return (
     <div className="my-16">
-      <Title title="Top Rated" Icon={BsBookmarkStarFill} />
+      <Title title="Popular Movies" Icon={TbMovie} />
       <div className="mt-10">
         <Swiper
           spaceBetween={40}
@@ -75,6 +75,15 @@ const TopRated = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="flex justify-center mt-10">
+      <Link
+        to={`/movies/topRated`}
+
+        className="relative px-5 py-2 font-medium text-white group"
+      >
+        <ViewAllBtn/>
+      </Link>
       </div>
     </div>
   );

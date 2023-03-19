@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import Favorite from "../../../Shared/Favorite/Favorite";
 import FlexMovieItems from "./FlexMovieItems";
 
 const Hero = () => {
-  const { data: movies } = useQuery({
+  const { data: movies, refetch } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
       const res = await fetch(`https://cineplanet-server.vercel.app/movies`);
@@ -19,6 +19,8 @@ const Hero = () => {
       return data;
     },
   });
+
+    
   return (
     <div className="relative w-full">
       <Swiper
@@ -55,6 +57,7 @@ const Hero = () => {
               <div className="flex gap-5 items-center">
                 <Link
                 to={`/watch/${movie._id}`}
+                
                   className="relative px-5 py-2 font-medium text-white group"
                 >
                   <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-red-500 group-hover:bg-red-700 group-hover:skew-x-12"></span>

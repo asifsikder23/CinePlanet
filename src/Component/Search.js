@@ -1,40 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Search = () => {
+  const [allMoviesSearch, setData] = useState([]);
+  const [searchApiData, setSearchApiData] = useState([]);
+  const [filterVal, setFilterVal] = useState("");
+
+  useEffect(() => {
+    fetch("https://cineplanet-server.vercel.app/allsearch")
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res);
+        setSearchApiData(res);
+      });
+  }, []);
+
+  const handleFilter = (e) => {
+    if (e.target.value === "") {
+      setData(searchApiData);
+    } else {
+      const filterSearch = searchApiData.filter((it) =>
+        it?.name?.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setData(filterSearch);
+    }
+    setFilterVal(e.target.value);
+  };
+
   return (
     <div>
-      <div className="flex justify-center">
-        <div className=" xl:w-96">
-          <div className="relative  flex w-full flex-wrap items-stretch">
-            <input
-              type="search"
-              className="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal outline-none transition duration-300 ease-in-out focus:border-red-600 focus:shadow-te-primary focus:outline-none placeholder:text-neutral-200"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="button-addon1"
-            />
-            <button
-              className="relative z-[2] flex items-center rounded-r bg-red-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-              type="button"
-              id="button-addon1"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div className="dropdown mx-8">
+        <label tabIndex={0}>
+          <input
+            type="text"
+            placeholder="Search"
+            value={filterVal}
+            onInput={(e) => handleFilter(e)}
+            className="input lg:block w-40 lg:w-96 h-10 rounded-lg border-white bg-transparent"
+          />
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-slate-900 rounded-box w-52 lg:w-96 "
+        >
+          <li className="">
+            {allMoviesSearch?.slice(0, 3).map((it) => {
+              return (
+                <a href={`/watch/${it._id}`} key={it._id}>
+                  <div className="flex justify-between items-center w-full gap-5">
+                    <div className="w-20 lg:w-40">
+                      <img src={it.titleImg} alt="" className="w-40 h-20" />
+                    </div>
+                    <p className="text-left w-1/2">{it.name.toLowerCase()}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </li>
+        </ul>
       </div>
     </div>
   );

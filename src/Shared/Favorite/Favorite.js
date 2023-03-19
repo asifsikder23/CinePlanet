@@ -4,7 +4,6 @@ import { AuthContext } from "../../Context/UserContext";
 
 const Favorite = ({ movie }) => {
   const { name, category, poster, year, time, _id } = movie;
-  console.log(movie);
   const { user } = useContext(AuthContext);
   const handleFavorite = () => {
     const email = user.email;

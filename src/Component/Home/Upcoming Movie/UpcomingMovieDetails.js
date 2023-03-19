@@ -1,8 +1,7 @@
 import React from "react";
-import { FaPlay, FaShareAlt } from "react-icons/fa";
+import {  FaShareAlt } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
-import { Link, useParams } from "react-router-dom";
-import FlexMovieItems from "./FlexMovieItems";
+import {  useParams } from "react-router-dom";
 
 import { useQuery } from "react-query";
 import {
@@ -17,44 +16,31 @@ import {
   WhatsappIcon,
   WhatsappShareButton
 } from "react-share";
-import MostViewed from "../../MostViewed/MostViewed";
 import Star from "../TopRated/Star";
+import FlexMovieItems from "../Hero/FlexMovieItems";
 
-const Watch = () => {
+const UpcomingMovieDetails = () => {
   const params = useParams();
   const id = params.id;
 
-  const { data: details, refetch } = useQuery({
+  const { data: details } = useQuery({
     queryKey: ["details"],
     queryFn: async () => {
       const res = await fetch(
-        `https://cineplanet-server.vercel.app/movies/${id}`
+        `http://localhost:5000/upcoming/${id}`
       );
       const data = await res.json();
-
       return data;
     },
   });
 
-  const handleViewed = (id) => {
-    console.log("hit outside");
-    fetch(`https://cineplanet-server.vercel.app/viewed/${id}`, {
-      method: "PUT",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        refetch();
-        if (data.modifiedCount > 0) {
-        }
-      });
-  };
   return (
     <div>
       {details?.map((movie) => (
         <div className="w-full lg:h-screen relative text-white">
           <img
             src={movie?.titleImg}
+            draggable=  'false'
             alt={movie?.name}
             className="w-full h-full hidden lg:inline-block object-cover"
           />
@@ -77,11 +63,6 @@ const Watch = () => {
                       HD 4K
                     </div>
                     <FlexMovieItems movie={movie && movie}></FlexMovieItems>
-                    <div className="flex gap-3 items-center justify-center">
-                      {details?.map((info) => (
-                        <MostViewed key={info.id} info={info}></MostViewed>
-                      ))}
-                    </div>
                   </div>
 
                   <div>
@@ -106,16 +87,6 @@ const Watch = () => {
                           </span>
                         </p>
                       </div>
-                      <div className="sm:col-span-2 col-span-3 flex justify-end font-medium text-sm">
-                        <Link
-                          to={`/watchMovie/${id}`}
-                          onClick={() => handleViewed(id)}
-                          className="bg-slate-900 hover:bg-red-600 transition border-2 border-red-600 lg:rounded-full flex justify-center items-center gap-4 w-full py-3"
-                        >
-                          <FaPlay />
-                          Watch
-                        </Link>
-                      </div>
                     </div>
                     <div className="flex justify-center gap-2 text-yellow-600 py-7">
                       <Star value={movie.rate} />
@@ -123,14 +94,13 @@ const Watch = () => {
                   </div>
                 </div>
                 <div className="col-span-2 md:mt-0 mt-2 flex justify-end">
-                  <a
-                    href={movie?.video}
-                    className=" w-full md:w-1/4  relative flex-colo bg-red-600 hover:bg-transparent border-2 border-red-600 transition md:h-64 h-20 rounded font-medium"
+                  <p
+                    className=" w-full md:w-1/4  relative flex-colo bg-red-600 hover:bg-transparent border-2 border-red-600 transition h-28 md:h-64  rounded font-medium"
                   >
-                    <div className="flex gap-6 text-md uppercase tracking-widest absolute md:rotate-90">
-                      Download <FiLogIn className="w-6 h-6" />
+                    <div className="text-md uppercase tracking-widest absolute md:rotate-90">
+                      Coming
                     </div>
-                  </a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -179,4 +149,4 @@ const Watch = () => {
   );
 };
 
-export default Watch;
+export default UpcomingMovieDetails;
