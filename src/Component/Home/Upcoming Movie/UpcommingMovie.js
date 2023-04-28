@@ -10,7 +10,7 @@ const UpcommingMovie = () => {
   const { data: upcoming } = useQuery({
     queryKey: ["upcoming"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/upcoming`);
+      const res = await fetch(`https://cineplanet-server.vercel.app/upcoming`);
       const data = await res.json();
 
       return data;

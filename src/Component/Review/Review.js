@@ -16,7 +16,7 @@ const Review = ({ movie }) => {
   const { _id } = movie;
 
   const { data, isLoading, refetch } = useQuery("blogs", () =>
-    axios(`http://localhost:5000/review/${_id}`)
+    axios(`https://cineplanet-server.vercel.app/review/${_id}`)
   );
   refetch()
   console.log(data);
@@ -65,7 +65,7 @@ const Review = ({ movie }) => {
       rate: rating,
     };
 
-    fetch(`http://localhost:5000/review`, {
+    fetch(`https://cineplanet-server.vercel.app/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

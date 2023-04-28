@@ -48,10 +48,10 @@ const UpcomingMovieUpload = () => {
     formvideo.append("filename", video);
     setLoading(true);
 
-    const url = "http://localhost:5000/uploadPhoto";
+    const url = "https://cineplanet-server.vercel.app/uploadPhoto";
 
     // video upload firebase-------------------------
-    fetch("http://localhost:5000/uploadVideo", {
+    fetch("https://cineplanet-server.vercel.app/uploadVideo", {
       method: "POST",
       body: formvideo,
     })
@@ -83,7 +83,7 @@ const UpcomingMovieUpload = () => {
               // video
             };
             console.log(addMovie);
-            fetch("http://localhost:5000/upcoming", {
+            fetch("https://cineplanet-server.vercel.app/upcoming", {
               method: "POST",
               headers: { "content-type": "application/json" },
               body: JSON.stringify(addMovie),

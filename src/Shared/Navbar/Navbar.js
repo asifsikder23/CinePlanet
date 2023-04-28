@@ -6,6 +6,7 @@ import logo from "../../Assets/logo.png";
 import Search from "../../Component/Search";
 import { AuthContext } from "../../Context/UserContext";
 import FavoriteNotification from "../Favorite/FavoriteNotification";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -160,42 +161,23 @@ const Navbar = () => {
 
               <div className="w-full gap-y-4 lg:w-max md:gap-y-0 lg:gap-x-3 flex items-center lg:flex-row flex-col">
                 <Link
-                to={'/favorite'}>
+                  to={'/favorite'}>
                   <div className="mr-5">
-                  <p className="indicator tab tab-active">
-                    <AiFillHeart className="text-red-600 w-10 h-10" />
-                    <FavoriteNotification/>
-                  </p>
-                </div>
+                    <p className="indicator tab tab-active">
+                      <AiFillHeart className="text-red-600 w-10 h-10" />
+                      <FavoriteNotification />
+                    </p>
+                  </div>
                 </Link>
                 <div>
                   {user ? (
-                    <div className="dropdown dropdown-end hidden lg:flex">
-                      <label
-                        tabIndex={0}
-                        className="btn btn-ghost btn-circle avatar"
-                      >
-                        <div className="w-10 rounded-full">
-                          <img src={user.photoURL} alt="" />
-                        </div>
-                      </label>
-                      <ul
-                        tabIndex={0}
-                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-                      >
-                        <li>
-                          <p className="justify-between">Profile</p>
-                        </li>
-                        <li>
-                          <a>Settings</a>
-                        </li>
-                        <li>
-                          <p onClick={logOut} className="cursor-pointer">
-                            Logout
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
+                    
+                      
+
+                      <div className="flex flex-col items-center justify-center  py-2">
+                        <Sidebar />
+                      </div>
+               
                   ) : (
                     <Link to={"/signIn"}>
                       <button
