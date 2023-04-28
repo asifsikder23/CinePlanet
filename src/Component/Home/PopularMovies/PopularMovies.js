@@ -7,12 +7,12 @@ import ViewAllBtn from "../../button/ViewAllBtn";
 import Title from "../../Title/Title";
 
 const PopularMovies = () => {
+
   const { data: popular } = useQuery({
     queryKey: ["popular"],
     queryFn: async () => {
       const res = await fetch(`https://cineplanet-server.vercel.app/popular`);
       const data = await res.json();
-
       return data;
     },
   });

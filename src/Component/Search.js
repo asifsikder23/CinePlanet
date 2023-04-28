@@ -42,7 +42,7 @@ const Search = () => {
           tabIndex={0}
           className="dropdown-content menu p-2 shadow bg-slate-900 rounded-box w-52 lg:w-96 "
         >
-          <li className="">
+          <li>
             {allMoviesSearch?.slice(0, 3).map((it) => {
               return (
                 <a href={`/watch/${it._id}`} key={it._id}>

@@ -11,7 +11,6 @@ import FavoriteList from "../Shared/Favorite/FavoriteList";
 import SignIn from "../Shared/SignIn/SignIn";
 import SignUp from "../Shared/SignUp/SignUp";
 import MoviesLayout from "../Layout/MoviesLayout";
-import Movies from "../Component/Pages/Movies/Movies";
 import Popular from "../Component/Pages/Movies/Popular";
 import AllMovies from "../Component/Pages/Movies/AllMovies";
 import TopViewed from "../Component/Pages/Movies/TopViewed";

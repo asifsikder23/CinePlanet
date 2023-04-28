@@ -168,6 +168,7 @@ const UploadMovies = () => {
                   <div className="flex">
                     <input
                       type="file"
+                      multiple
                       required
                       name="poster_path"
                       accept="image/*"

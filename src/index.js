@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from "react-query";
 import UserContext from './Context/UserContext';
+import { Toaster } from "react-hot-toast";
 
 
 const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
    <UserContext>
       <App/>
+      <Toaster />
       </UserContext>
     </QueryClientProvider>
   </React.StrictMode>

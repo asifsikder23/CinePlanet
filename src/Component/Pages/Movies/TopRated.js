@@ -16,7 +16,6 @@ const TopRated = () => {
   return (
     <div>
      <div className="pt-10 flex justify-end pr-6">
-        <Search />
       </div>
       <div>
         <div className="lg:ml-auto  mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">

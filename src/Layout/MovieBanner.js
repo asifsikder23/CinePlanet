@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { FaHeart } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Autoplay } from "swiper";
+import { Autoplay, FreeMode } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Favorite from "../../../Shared/Favorite/Favorite";
-import FlexMovieItems from "./FlexMovieItems";
+import FlexMovieItems from "../Component/Home/Hero/FlexMovieItems";
+import Favorite from "../Shared/Favorite/Favorite";
 
-const Hero = () => {
+const MovieBanner = () => {
   const { data: movies, refetch } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
@@ -23,7 +24,7 @@ const Hero = () => {
   return (
     <div className="relative w-full">
       <Swiper
-        direction="vertical"
+        // direction="vertical"
         slidesPerview={1}
         loop={true}
         speed={3000}
@@ -36,7 +37,7 @@ const Hero = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay]}
+        modules={[Autoplay, FreeMode]}
         className="w-full h-48 lg:h-64 xl:h-96"
       >
         {movies?.map((movie, index) => (
@@ -53,22 +54,6 @@ const Hero = () => {
               <div className="flex gap-5 items-center text-white">
                 <FlexMovieItems movie={movie} />
               </div>
-              <div className="flex gap-5 items-center">
-                <Link
-                to={`/watch/${movie._id}`}
-                
-                  className="relative px-5 py-2 font-medium text-white group"
-                >
-                  <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-red-500 group-hover:bg-red-700 group-hover:skew-x-12"></span>
-                  <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-red-700 group-hover:bg-red-500 group-hover:-skew-x-12"></span>
-
-                  <span className="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-red-600 -rotate-12"></span>
-                  <span className="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-red-400 -rotate-12"></span>
-                  <span className="relative">Watch</span>
-                </Link>
-
-                <Favorite movie={movie}></Favorite>
-              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -77,4 +62,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default MovieBanner;

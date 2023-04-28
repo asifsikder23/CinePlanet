@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import {
-  AiOutlineHome,
-} from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 import { GoEye } from "react-icons/go";
 import { FiLogOut } from "react-icons/fi";
 import { RiLoginCircleLine } from "react-icons/ri";
@@ -10,6 +8,10 @@ import { AuthContext } from "../Context/UserContext";
 import logo from "../Assets/logo.png";
 import { FaVideo } from "react-icons/fa";
 import { TbMovie } from "react-icons/tb";
+import Hero from "../Component/Home/Hero/Hero";
+import Search from "../Component/Search";
+import MovieBanner from "./MovieBanner";
+import FavoriteNotification from "../Shared/Favorite/FavoriteNotification";
 
 const MoviesLayout = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -25,6 +27,37 @@ const MoviesLayout = () => {
   };
   return (
     <div>
+      <div className="flex justify-end py-5 mr-8">
+        <Search />
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user.photoURL} alt="" />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <a>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="pl-10 md:pl-36">
+        <MovieBanner/>
+      </div>
       <Outlet />
       <aside className="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         <div>
@@ -63,7 +96,7 @@ const MoviesLayout = () => {
                     className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-primary  hover:text-white border-l-4 border-transparent  hover:border-red-700 pr-6 active"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
-                    <FaVideo size={"1.25rem"}></FaVideo>
+                      <FaVideo size={"1.25rem"}></FaVideo>
                     </span>
                     <span className="ml-2 text-sm tracking-wide truncate">
                       All Movies
@@ -83,7 +116,7 @@ const MoviesLayout = () => {
                     </span>
                   </Link>
                 </li>
-                
+
                 <li>
                   <Link
                     to="/movies/topViewed"
